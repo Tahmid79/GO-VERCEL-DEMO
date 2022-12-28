@@ -1,10 +1,16 @@
 package handler
 
 import (
-  "fmt"
-  "net/http"
+	"encoding/json"
+	"net/http"
 )
 
+type response struct {
+	Message string
+}
+
 func Handler(w http.ResponseWriter, r *http.Request) {
-  fmt.Fprintf(w, "<h1>Hello from Go!</h1>")
+	msg := response{"Hello from go"}
+	json.NewEncoder(w).Encode(&msg)
+	//fmt.Fprintf(w, "<h1>Hello from Go!</h1>")
 }
